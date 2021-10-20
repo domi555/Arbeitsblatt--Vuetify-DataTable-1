@@ -7,7 +7,7 @@ const cors = require('cors');
 require('colors');
 require('dotenv').config();
 
-const routes = require('./routes/cars');
+const routes = require('./routes/movies');
 const { errorHandler, notFound } = require('./middleware/errorHandler');
 
 const app = express();
