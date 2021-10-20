@@ -1,9 +1,10 @@
 <template>
   <div class="container mt-5">
     <v-alert class="blue-grey darken-2 white--text mx-10"
-      >Selected movies: {{ selected.map((el) => el.title).toString() }}</v-alert
+      >Selected movies: {{ selectedMovies }}</v-alert
     >
     <v-data-table
+      :search="search"
       v-model="selected"
       :headers="headers"
       :items="movies"
@@ -11,6 +12,13 @@
       class="elevation-3"
       show-select
       :footer-props="{ itemsPerPageOptions: [6, 12, 18] }"
+    >
+      <template v-slot:top>
+        <v-text-field
+          v-model="search"
+          label="Search"
+          class="mx-4"
+        ></v-text-field> </template
     ></v-data-table>
   </div>
 </template>
@@ -21,6 +29,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      search: '',
       singleSelect: false,
       selected: [],
       headers: [
@@ -59,6 +68,17 @@ export default {
     } catch (e) {
       console.error(e.message);
     }
+  },
+  methods: {
+    filterMovies(value, search) {},
+  },
+  computed: {
+    selectedMovies() {
+      // @item-select: Aufruf beim Selektieren eines Eintrages
+      // @toggle-select-all: Aufruf beim Anklicken des Alle-Einträge-Auswahl-Buttons
+      // Somit könn(t)en Änderungen erfasst und geupdated werden. Ich habe einen anderen Lösungsansatz verfolgt.
+      return this.selected.map((el) => el.title).join(', ');
+    },
   },
 };
 </script>

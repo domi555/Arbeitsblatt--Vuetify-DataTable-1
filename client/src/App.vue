@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app>
       <img
-        class="mx-2"
+        class="mx-2 hidden-md-and-down"
         src="../src/assets/logo.png"
         style="height: 150px; margin-top: 100px"
       />
